@@ -30,18 +30,19 @@ const Content = ({ course }) => {
 
 // exercices : catch all exercices properties from array parts in props object
 // [first, second, third] : take each exercices number values individualy
-// const Total = (props) => {
-//   const exercices = props.parts.map((el) => el.exercises);
-//   const [first, second, third] = exercices;
-//   const sum = first + second + third;
-//   return <p>Number of exercises {sum}</p>;
-// };
+const Total = ({ course }) => {
+  const exercices = course.parts.map((el) => el.exercises);
+  const [first, second, third] = exercices;
+  const sum = first + second + third;
+  return <p>Number of exercises {sum}</p>;
+};
 
 const Course = ({ course }) => {
   return (
     <>
       <Header course={course} />
       <Content course={course} />
+      <Total course={course} />
     </>
   );
 };
