@@ -9,13 +9,13 @@ const Header = ({ course }) => {
 const Part = ({ course }) => {
   const arrayPart = course.parts;
 
-  // const parts = arrayPart.map((el) => {
-  //   return <li key={el.id}>{el.name + ' ' + el.exercises}</li>;
-  // });
+  const parts = arrayPart.map((el) => {
+    return <li key={el.id}>{el.name + ' ' + el.exercises}</li>;
+  });
 
   return (
     <>
-      <p>ok</p>
+      <ul>{parts}</ul>
     </>
   );
 };
