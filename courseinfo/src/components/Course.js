@@ -1,23 +1,27 @@
 import React from 'react';
 
-const Header = ({ courses }) => {
-  console.log(courses);
-  return <h1>{courses[0].name}</h1>;
+const Header = () => {
+  return <h1>Web Development curriculum</h1>;
 };
 
-// const Part = ({ courses }) => {
-//   const arrayPart = courses.parts;
+const Title = ({ title }) => {
+  return <h2>{title}</h2>;
+};
 
-//   const parts = arrayPart.map((el) => {
-//     return <li key={el.id}>{el.name + ' ' + el.exercises}</li>;
-//   });
+const Part = ({ courses }) => {
+  const arrayPart1 = courses[0].parts;
+  const arrayPart2 = courses[1].parts;
 
-//   return (
-//     <>
-//       <ul>ok</ul>
-//     </>
-//   );
-// };
+  // const parts = arrayPart.map((el) => {
+  //   return <li key={el.id}>{el.name + ' ' + el.exercises}</li>;
+  // });
+
+  return (
+    <>
+      <ul>ok</ul>
+    </>
+  );
+};
 
 // const Content = ({ courses }) => {
 //   return (
@@ -34,10 +38,13 @@ const Header = ({ courses }) => {
 // };
 
 const Course = ({ courses }) => {
+  console.log(courses);
   return (
     <>
-      <Header courses={courses} />
+      <Header />
+      <Title title={courses[0].name} />
       {/* <Content courses={courses} /> */}
+      <Title title={courses[1].name} />
       {/* <Total courses={courses} /> */}
     </>
   );
