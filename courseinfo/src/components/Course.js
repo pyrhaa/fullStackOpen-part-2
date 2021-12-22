@@ -31,11 +31,11 @@ const Part = ({ courses }) => {
 //   );
 // };
 
-// const Total = ({ courses }) => {
-//   const exercices = courses.parts.map((el) => el.exercises);
-//   const total = exercices.reduce((prev, current) => prev + current);
-//   return <p>Number of exercises {total}</p>;
-// };
+const Total = ({ parts }) => {
+  const exercices = parts.map((el) => el.exercises);
+  const total = exercices.reduce((prev, current) => prev + current);
+  return <p>Number of exercises {total}</p>;
+};
 
 const Course = ({ courses }) => {
   console.log(courses);
@@ -44,8 +44,10 @@ const Course = ({ courses }) => {
       <Header />
       <Title title={courses[0].name} />
       {/* <Content courses={courses} /> */}
+      <Total parts={courses[0].parts} />
       <Title title={courses[1].name} />
-      {/* <Total courses={courses} /> */}
+      {/* <Content courses={courses} /> */}
+      <Total parts={courses[1].parts} />
     </>
   );
 };
