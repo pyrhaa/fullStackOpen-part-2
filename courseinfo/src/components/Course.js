@@ -1,48 +1,44 @@
 import React from 'react';
 
-const Header = ({ course }) => {
-  return <h1>{course.name}</h1>;
+const Header = ({ courses }) => {
+  console.log(courses);
+  return <h1>{courses[0].name}</h1>;
 };
 
-// arrayPart : catch the array parts in the props object
-// parts : map to arrayPart each element name and exercices in a list
-const Part = ({ course }) => {
-  const arrayPart = course.parts;
+// const Part = ({ courses }) => {
+//   const arrayPart = courses.parts;
 
-  const parts = arrayPart.map((el) => {
-    return <li key={el.id}>{el.name + ' ' + el.exercises}</li>;
-  });
+//   const parts = arrayPart.map((el) => {
+//     return <li key={el.id}>{el.name + ' ' + el.exercises}</li>;
+//   });
 
+//   return (
+//     <>
+//       <ul>ok</ul>
+//     </>
+//   );
+// };
+
+// const Content = ({ courses }) => {
+//   return (
+//     <div>
+//       <Part courses={courses} />
+//     </div>
+//   );
+// };
+
+// const Total = ({ courses }) => {
+//   const exercices = courses.parts.map((el) => el.exercises);
+//   const total = exercices.reduce((prev, current) => prev + current);
+//   return <p>Number of exercises {total}</p>;
+// };
+
+const Course = ({ courses }) => {
   return (
     <>
-      <ul>{parts}</ul>
-    </>
-  );
-};
-
-const Content = ({ course }) => {
-  return (
-    <div>
-      <Part course={course} />
-    </div>
-  );
-};
-
-// exercices : catch all exercices properties from array parts in props object
-// [first, second, third] : take each exercices number values individualy
-const Total = ({ course }) => {
-  const exercices = course.parts.map((el) => el.exercises);
-  const total = exercices.reduce((prev, current) => prev + current);
-  return <p>Number of exercises {total}</p>;
-};
-
-//31
-const Course = ({ course }) => {
-  return (
-    <>
-      <Header course={course} />
-      <Content course={course} />
-      <Total course={course} />
+      <Header courses={courses} />
+      {/* <Content courses={courses} /> */}
+      {/* <Total courses={courses} /> */}
     </>
   );
 };
