@@ -32,11 +32,11 @@ const Content = ({ course }) => {
 // [first, second, third] : take each exercices number values individualy
 const Total = ({ course }) => {
   const exercices = course.parts.map((el) => el.exercises);
-  const [first, second, third] = exercices;
-  const sum = first + second + third;
-  return <p>Number of exercises {sum}</p>;
+  const total = exercices.reduce((prev, current) => prev + current);
+  return <p>Number of exercises {total}</p>;
 };
 
+//31
 const Course = ({ course }) => {
   return (
     <>
