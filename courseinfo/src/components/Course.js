@@ -8,28 +8,25 @@ const Title = ({ title }) => {
   return <h2>{title}</h2>;
 };
 
-const Part = ({ courses }) => {
-  const arrayPart1 = courses[0].parts;
-  const arrayPart2 = courses[1].parts;
-
-  // const parts = arrayPart.map((el) => {
-  //   return <li key={el.id}>{el.name + ' ' + el.exercises}</li>;
-  // });
+const Part = ({ parts }) => {
+  const part = parts.map((el) => {
+    return <li key={el.id}>{el.name + ' ' + el.exercises}</li>;
+  });
 
   return (
     <>
-      <ul>ok</ul>
+      <ul>{part}</ul>
     </>
   );
 };
 
-// const Content = ({ courses }) => {
-//   return (
-//     <div>
-//       <Part courses={courses} />
-//     </div>
-//   );
-// };
+const Content = ({ parts }) => {
+  return (
+    <div>
+      <Part parts={parts} />
+    </div>
+  );
+};
 
 const Total = ({ parts }) => {
   const exercices = parts.map((el) => el.exercises);
@@ -43,10 +40,10 @@ const Course = ({ courses }) => {
     <>
       <Header />
       <Title title={courses[0].name} />
-      {/* <Content courses={courses} /> */}
+      <Content parts={courses[0].parts} />
       <Total parts={courses[0].parts} />
       <Title title={courses[1].name} />
-      {/* <Content courses={courses} /> */}
+      <Content parts={courses[1].parts} />
       <Total parts={courses[1].parts} />
     </>
   );
