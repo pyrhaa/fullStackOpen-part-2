@@ -5,7 +5,7 @@ const App = () => {
     { name: 'Arto Hellas' },
     { name: 'Dihya Chawya' }
   ]);
-  const [newName, setNewName] = useState('a new name...');
+  const [newName, setNewName] = useState('');
   console.log(persons);
   console.log('newName is:' + newName);
 
@@ -14,12 +14,17 @@ const App = () => {
     console.log('button clicked', e.target);
   };
 
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    setNewName(e.target.value);
+  };
+
   return (
     <div>
       <h2>Phonebook</h2>
       <form onSubmit={addName}>
         <div>
-          name: <input value={newName} />
+          name: <input value={newName} onChange={handleChange} />
         </div>
         <div>
           <button type="submit">add</button>
