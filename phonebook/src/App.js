@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' },
-    { name: 'Dihya Chawya' }
-  ]);
+  const [persons, setPersons] = useState([{ name: 'Arto Hellas' }]);
   const [newName, setNewName] = useState('');
-  console.log(persons);
-  console.log('newName is:' + newName);
 
   const addName = (e) => {
     e.preventDefault();
-    console.log('button clicked', e.target);
+    const nameObject = { name: newName };
+    setPersons(persons.concat(nameObject));
+    setNewName('');
   };
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     setNewName(e.target.value);
   };
 
