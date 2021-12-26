@@ -5,7 +5,7 @@ const App = () => {
     { name: 'Arto Hellas' },
     { name: 'Dihya Chawya' }
   ]);
-  const [newName, setNewName] = useState('');
+  const [newName, setNewName] = useState('a new name...');
   console.log(persons);
   console.log('newName is:' + newName);
 
@@ -19,7 +19,7 @@ const App = () => {
       <h2>Phonebook</h2>
       <form onSubmit={addName}>
         <div>
-          name: <input />
+          name: <input value={newName} />
         </div>
         <div>
           <button type="submit">add</button>
