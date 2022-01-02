@@ -3,6 +3,10 @@ import React, { useState } from 'react';
 const App = () => {
   const [persons, setPersons] = useState([{ name: 'Arto Hellas', id: 1 }]);
   const [newName, setNewName] = useState('');
+  const nameValue = persons.values();
+  console.log(nameValue);
+
+  const preventSame = () => {};
 
   const addName = (e) => {
     e.preventDefault();
