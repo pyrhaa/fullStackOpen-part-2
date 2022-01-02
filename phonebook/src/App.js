@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 
 const App = () => {
-  const [persons, setPersons] = useState([{ name: 'Arto Hellas' }]);
+  const [persons, setPersons] = useState([{ name: 'Arto Hellas', id: 1 }]);
   const [newName, setNewName] = useState('');
 
   const addName = (e) => {
     e.preventDefault();
-    const nameObject = { name: newName };
+    const lastId = persons[persons.length - 1].id;
+    const nameObject = { name: newName, id: lastId + 1 };
     setPersons(persons.concat(nameObject));
     setNewName('');
   };
@@ -27,10 +28,9 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      <div>debug: {newName}</div>
       <ul>
         {persons.map((el) => (
-          <li key={el.name}>{el.name}</li>
+          <li key={el.id}>{el.name}</li>
         ))}
       </ul>
     </div>
