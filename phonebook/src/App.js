@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 
 const App = () => {
-  const [persons, setPersons] = useState([{ name: 'Arto Hellas', id: 1 }]);
+  const [persons, setPersons] = useState([
+    { name: 'Arto Hellas', id: 1 },
+    { name: 'Azul Fella', id: 2 }
+  ]);
   const [newName, setNewName] = useState('');
 
   const preventSame = () => {
-    const nameValue = persons.values();
-    for (const value of nameValue) {
-      return value.name;
-    }
+    const filterName = persons.filter(
+      (el) => el.name.toLowerCase() === newName.toLowerCase()
+    );
+    console.log(filterName);
   };
 
-  console.log(preventSame());
+  preventSame();
 
   const addName = (e) => {
     e.preventDefault();
