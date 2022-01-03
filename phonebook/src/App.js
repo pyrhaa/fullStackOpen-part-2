@@ -41,8 +41,10 @@ const App = () => {
     setNewPhone(e.target.value);
   };
 
-  const handleChangeSearch = (e) => {
-    console.log(e.target.value);
+  const filterNames = (array, request) => {
+    return array.filter(
+      (el) => el.toLowerCase().indexOf(request.toLowerCase()) !== -1
+    );
   };
 
   return (
