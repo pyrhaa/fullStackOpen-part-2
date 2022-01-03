@@ -14,14 +14,19 @@ const App = () => {
     return filterName;
   };
 
-  console.log(preventSame());
-
   const addName = (e) => {
     e.preventDefault();
     const lastId = persons[persons.length - 1].id;
     const nameObject = { name: newName, id: lastId + 1 };
-    setPersons(persons.concat(nameObject));
-    setNewName('');
+
+    if (preventSame()) {
+      console.log(false);
+    } else if (newName === false || '') {
+      console.log(false);
+    } else {
+      setPersons(persons.concat(nameObject));
+      setNewName('');
+    }
   };
 
   const handleChange = (e) => {
