@@ -41,6 +41,10 @@ const App = () => {
     setNewPhone(e.target.value);
   };
 
+  const handleChangeSearch = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
     <div>
       <h1>Phonebook</h1>
@@ -51,6 +55,7 @@ const App = () => {
           id="site-search"
           name="search"
           aria-label="Search through site content"
+          onChange={handleChangeSearch}
         />
         <button>Search</button>
       </div>
