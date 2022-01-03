@@ -9,6 +9,8 @@ const App = () => {
   ]);
   const [newName, setNewName] = useState('');
   const [newPhone, setNewPhone] = useState('');
+  const [search, setSearch] = useState('');
+  const [showAll, setShowAll] = useState(true);
 
   const addName = (e) => {
     e.preventDefault();
@@ -41,10 +43,27 @@ const App = () => {
     setNewPhone(e.target.value);
   };
 
+  const handleChangeSearch = (e) => {
+    setSearch(e.target.value);
+    setShowAll(false);
+  };
+
   const filterNames = (array, request) => {
     return array.filter(
       (el) => el.toLowerCase().indexOf(request.toLowerCase()) !== -1
     );
+  };
+
+  const displayNames = () => {
+    if (showAll) {
+      <ul>
+        {persons.map((el) => (
+          <li key={el.id}>
+            {el.name} {el.number}
+          </li>
+        ))}
+      </ul>;
+    }
   };
 
   return (
