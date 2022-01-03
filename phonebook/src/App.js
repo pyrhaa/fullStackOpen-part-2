@@ -7,24 +7,18 @@ const App = () => {
   ]);
   const [newName, setNewName] = useState('');
 
-  const preventSame = () => {
-    const filterName = persons.find(
-      (el) => el.name.toLowerCase() === newName.toLowerCase()
-    );
-    return filterName;
-  };
-
-  console.log(persons);
-
   const addName = (e) => {
     e.preventDefault();
     const lastId = persons[persons.length - 1].id;
     const nameObject = { name: newName, id: lastId + 1 };
+    const filterName = persons.find(
+      (el) => el.name.toLowerCase() === newName.toLowerCase()
+    );
 
-    if (preventSame()) {
-      console.log(false);
+    if (filterName) {
+      window.alert(`${newName} is already added to phonebook`);
     } else if (nameObject === false || nameObject.name === '') {
-      console.log(false);
+      window.alert("You don't write a name to submit");
     } else {
       setPersons(persons.concat(nameObject));
       setNewName('');
