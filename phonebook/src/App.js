@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', id: 1 },
-    { name: 'Azul Fella', id: 2 }
+    { name: 'Arto Hellas', number: '070809', id: 1 },
+    { name: 'Azul Fella', number: '12345', id: 2 }
   ]);
   const [newName, setNewName] = useState('');
+  const [newPhone, setNewPhone] = useState('');
 
   const addName = (e) => {
     e.preventDefault();
     const lastId = persons[persons.length - 1].id;
-    const nameObject = { name: newName, id: lastId + 1 };
+    const nameObject = { name: newName, number: '', id: lastId + 1 };
     const filterName = persons.find(
       (el) => el.name.toLowerCase() === newName.toLowerCase()
     );
@@ -35,6 +36,9 @@ const App = () => {
       <form onSubmit={addName}>
         <div>
           name: <input value={newName} onChange={handleChange} />
+        </div>
+        <div>
+          number: <input value={newPhone} onChange={handleChange} />
         </div>
         <div>
           <button type="submit">add</button>
