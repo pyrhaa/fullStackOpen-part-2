@@ -11,23 +11,32 @@ const App = () => {
   const addName = (e) => {
     e.preventDefault();
     const lastId = persons[persons.length - 1].id;
-    const nameObject = { name: newName, number: '', id: lastId + 1 };
+    const nameObject = { name: newName, number: newPhone, id: lastId + 1 };
     const filterName = persons.find(
       (el) => el.name.toLowerCase() === newName.toLowerCase()
     );
 
     if (filterName) {
       window.alert(`${newName} is already added to phonebook`);
-    } else if (nameObject === false || nameObject.name === '') {
-      window.alert("You don't write a name to submit");
+    } else if (
+      nameObject === false ||
+      nameObject.name === '' ||
+      nameObject.number === ''
+    ) {
+      window.alert("You don't write a name and the phone number to submit");
     } else {
       setPersons(persons.concat(nameObject));
       setNewName('');
+      setNewPhone('');
     }
   };
 
-  const handleChange = (e) => {
+  const handleChangeName = (e) => {
     setNewName(e.target.value);
+  };
+
+  const handleChangePhone = (e) => {
+    setNewPhone(e.target.value);
   };
 
   return (
@@ -35,10 +44,10 @@ const App = () => {
       <h2>Phonebook</h2>
       <form onSubmit={addName}>
         <div>
-          name: <input value={newName} onChange={handleChange} />
+          name: <input value={newName} onChange={handleChangeName} />
         </div>
         <div>
-          number: <input value={newPhone} onChange={handleChange} />
+          number: <input value={newPhone} onChange={handleChangePhone} />
         </div>
         <div>
           <button type="submit">add</button>
@@ -47,7 +56,9 @@ const App = () => {
       <h2>Numbers</h2>
       <ul>
         {persons.map((el) => (
-          <li key={el.id}>{el.name}</li>
+          <li key={el.id}>
+            {el.name} {el.number}
+          </li>
         ))}
       </ul>
     </div>
