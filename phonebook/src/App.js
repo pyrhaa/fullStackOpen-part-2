@@ -14,6 +14,8 @@ const App = () => {
     return filterName;
   };
 
+  console.log(persons);
+
   const addName = (e) => {
     e.preventDefault();
     const lastId = persons[persons.length - 1].id;
@@ -21,7 +23,7 @@ const App = () => {
 
     if (preventSame()) {
       console.log(false);
-    } else if (newName === false || '') {
+    } else if (nameObject === false || nameObject.name === '') {
       console.log(false);
     } else {
       setPersons(persons.concat(nameObject));
