@@ -57,7 +57,6 @@ const App = () => {
           aria-label="Search through site content"
           onChange={handleChangeSearch}
         />
-        <button>Search</button>
       </div>
       <h2>add a new</h2>
       <form onSubmit={addName}>
