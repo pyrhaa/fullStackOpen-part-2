@@ -8,13 +8,13 @@ const App = () => {
   const [newName, setNewName] = useState('');
 
   const preventSame = () => {
-    const filterName = persons.filter(
+    const filterName = persons.find(
       (el) => el.name.toLowerCase() === newName.toLowerCase()
     );
-    console.log(filterName);
+    return filterName;
   };
 
-  preventSame();
+  console.log(preventSame());
 
   const addName = (e) => {
     e.preventDefault();
