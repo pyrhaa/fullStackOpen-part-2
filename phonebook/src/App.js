@@ -50,21 +50,23 @@ const App = () => {
 
   const filterNames = (array, request) => {
     return array.filter(
-      (el) => el.toLowerCase().indexOf(request.toLowerCase()) !== -1
+      (el) => el.name.toLowerCase().indexOf(request.toLowerCase()) !== -1
     );
   };
 
-  const displayNames = () => {
-    if (showAll) {
-      <ul>
-        {persons.map((el) => (
-          <li key={el.id}>
-            {el.name} {el.number}
-          </li>
-        ))}
-      </ul>;
-    }
-  };
+  // const displayNames = () => {
+  //   if (!showAll) {
+  //     filterNames(persons, search);
+  //   } else {
+  //     <ul>
+  //       {persons.map((el) => (
+  //         <li key={el.id}>
+  //           {el.name} {el.number}
+  //         </li>
+  //       ))}
+  //     </ul>;
+  //   }
+  // };
 
   return (
     <div>
