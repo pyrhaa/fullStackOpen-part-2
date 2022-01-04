@@ -16,11 +16,11 @@ const App = () => {
     e.preventDefault();
     const lastId = persons[persons.length - 1].id;
     const nameObject = { name: newName, number: newPhone, id: lastId + 1 };
-    const filterName = persons.find(
+    const findName = persons.find(
       (el) => el.name.toLowerCase() === newName.toLowerCase()
     );
 
-    if (filterName) {
+    if (findName) {
       window.alert(`${newName} is already added to phonebook`);
     } else if (
       nameObject === false ||
@@ -48,25 +48,26 @@ const App = () => {
     setShowAll(false);
   };
 
-  const filterNames = (array, request) => {
-    return array.filter(
-      (el) => el.name.toLowerCase().indexOf(request.toLowerCase()) !== -1
+  const displayNames = () => {
+    const filterNames = persons.filter(
+      (el) => el.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
     );
-  };
 
-  // const displayNames = () => {
-  //   if (!showAll) {
-  //     filterNames(persons, search);
-  //   } else {
-  //     <ul>
-  //       {persons.map((el) => (
-  //         <li key={el.id}>
-  //           {el.name} {el.number}
-  //         </li>
-  //       ))}
-  //     </ul>;
-  //   }
-  // };
+    const tryMap = filterNames.map((el) => (
+      <li key={el.id}>
+        {el.name} {el.number}
+      </li>
+    ));
+    console.log(tryMap);
+    // if (!showAll) {
+
+    // } else {
+    return persons.map((el) => (
+      <li key={el.id}>
+        {el.name} {el.number}
+      </li>
+    ));
+  };
 
   return (
     <div>
@@ -94,13 +95,7 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      <ul>
-        {persons.map((el) => (
-          <li key={el.id}>
-            {el.name} {el.number}
-          </li>
-        ))}
-      </ul>
+      <ul>{displayNames()}</ul>
     </div>
   );
 };
