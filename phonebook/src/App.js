@@ -56,15 +56,6 @@ const App = () => {
         {el.name} {el.number}
       </li>
     ));
-
-    // if (!showAll) {
-
-    // } else {
-    // return persons.map((el) => (
-    //   <li key={el.id}>
-    //     {el.name} {el.number}
-    //   </li>
-    // ));
   };
 
   return (
