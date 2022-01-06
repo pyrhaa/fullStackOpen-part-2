@@ -1,19 +1,43 @@
 import React, { useState } from 'react';
+import Persons from './components/Persons';
 
-const Persons = ({ persons, search }) => {
-  const filterNames = persons.filter(
-    (el) => el.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
-  );
-  return (
-    <ul>
-      {filterNames.map((el) => (
-        <li key={el.id}>
-          {el.name} {el.number}
-        </li>
-      ))}
-    </ul>
-  );
-};
+// const PersonForm = ({ persons, newName, newPhone }) => {
+//   const addName = (e) => {
+//     e.preventDefault();
+//     const lastId = persons[persons.length - 1].id;
+//     const nameObject = { name: newName, number: newPhone, id: lastId + 1 };
+//     const findName = persons.find(
+//       (el) => el.name.toLowerCase() === newName.toLowerCase()
+//     );
+
+//     if (findName) {
+//       window.alert(`${newName} is already added to phonebook`);
+//     } else if (
+//       nameObject === false ||
+//       nameObject.name === '' ||
+//       nameObject.number === ''
+//     ) {
+//       window.alert("You don't write a name and the phone number to submit");
+//     } else {
+//       setPersons(persons.concat(nameObject));
+//       setNewName('');
+//       setNewPhone('');
+//     }
+//   };
+//   return (
+//     <form onSubmit={addName}>
+//       <div>
+//         name: <input value={newName} onChange={handleChangeName} />
+//       </div>
+//       <div>
+//         number: <input value={newPhone} onChange={handleChangePhone} />
+//       </div>
+//       <div>
+//         <button type="submit">add</button>
+//       </div>
+//     </form>
+//   );
+// };
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -26,52 +50,9 @@ const App = () => {
   const [newPhone, setNewPhone] = useState('');
   const [search, setSearch] = useState('');
 
-  const addName = (e) => {
-    e.preventDefault();
-    const lastId = persons[persons.length - 1].id;
-    const nameObject = { name: newName, number: newPhone, id: lastId + 1 };
-    const findName = persons.find(
-      (el) => el.name.toLowerCase() === newName.toLowerCase()
-    );
-
-    if (findName) {
-      window.alert(`${newName} is already added to phonebook`);
-    } else if (
-      nameObject === false ||
-      nameObject.name === '' ||
-      nameObject.number === ''
-    ) {
-      window.alert("You don't write a name and the phone number to submit");
-    } else {
-      setPersons(persons.concat(nameObject));
-      setNewName('');
-      setNewPhone('');
-    }
-  };
-
-  const handleChangeName = (e) => {
-    setNewName(e.target.value);
-  };
-
-  const handleChangePhone = (e) => {
-    setNewPhone(e.target.value);
-  };
-
   const handleChangeSearch = (e) => {
     setSearch(e.target.value);
   };
-
-  // const displayNames = () => {
-  //   const filterNames = persons.filter(
-  //     (el) => el.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
-  //   );
-
-  //   return filterNames.map((el) => (
-  //     <li key={el.id}>
-  //       {el.name} {el.number}
-  //     </li>
-  //   ));
-  // };
 
   return (
     // <div>
@@ -86,23 +67,17 @@ const App = () => {
     //       onChange={handleChangeSearch}
     //     />
     //   </div>
-    //   <h2>add a new</h2>
-    //   <form onSubmit={addName}>
-    //     <div>
-    //       name: <input value={newName} onChange={handleChangeName} />
-    //     </div>
-    //     <div>
-    //       number: <input value={newPhone} onChange={handleChangePhone} />
-    //     </div>
-    //     <div>
-    //       <button type="submit">add</button>
-    //     </div>
-    //   </form>
 
     // </div>
     <div>
       <h3>Add a new</h3>
-      <PersonForm />
+      {/* <PersonForm
+        persons={persons}
+        newName={newName}
+        newPhone={newPhone}
+        handleChangeName={(e) => setNewName(e.target.value)}
+        handleChangePhone={(e) => setNewPhone(e.target.value)}
+      /> */}
       <h3>Numbers</h3>
       <Persons persons={persons} search={search} />
     </div>
