@@ -41,7 +41,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Filter handleChangeSearch={(e) => setSearch(e.target.value)} />
+      <Filter handleChangeSearch={(e) => setSearch(e.target.value.trim())} />
       <h3>Add a new</h3>
       <PersonForm
         addName={addName}
