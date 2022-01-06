@@ -1,5 +1,20 @@
 import React, { useState } from 'react';
 
+const Persons = ({ persons, search }) => {
+  const filterNames = persons.filter(
+    (el) => el.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
+  );
+  return (
+    <ul>
+      {filterNames.map((el) => (
+        <li key={el.id}>
+          {el.name} {el.number}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
 const App = () => {
   const [persons, setPersons] = useState([
     { name: 'Arto Hellas', number: '040-123456', id: 1 },
@@ -46,45 +61,50 @@ const App = () => {
     setSearch(e.target.value);
   };
 
-  const displayNames = () => {
-    const filterNames = persons.filter(
-      (el) => el.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
-    );
+  // const displayNames = () => {
+  //   const filterNames = persons.filter(
+  //     (el) => el.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
+  //   );
 
-    return filterNames.map((el) => (
-      <li key={el.id}>
-        {el.name} {el.number}
-      </li>
-    ));
-  };
+  //   return filterNames.map((el) => (
+  //     <li key={el.id}>
+  //       {el.name} {el.number}
+  //     </li>
+  //   ));
+  // };
 
   return (
+    // <div>
+    //   <h1>Phonebook</h1>
+    //   <div>
+    //     <label htmlFor="site-search">filter shown with</label>
+    //     <input
+    //       type="search"
+    //       id="site-search"
+    //       name="search"
+    //       aria-label="Search through site content"
+    //       onChange={handleChangeSearch}
+    //     />
+    //   </div>
+    //   <h2>add a new</h2>
+    //   <form onSubmit={addName}>
+    //     <div>
+    //       name: <input value={newName} onChange={handleChangeName} />
+    //     </div>
+    //     <div>
+    //       number: <input value={newPhone} onChange={handleChangePhone} />
+    //     </div>
+    //     <div>
+    //       <button type="submit">add</button>
+    //     </div>
+    //   </form>
+
+    // </div>
     <div>
-      <h1>Phonebook</h1>
-      <div>
-        <label htmlFor="site-search">filter shown with</label>
-        <input
-          type="search"
-          id="site-search"
-          name="search"
-          aria-label="Search through site content"
-          onChange={handleChangeSearch}
-        />
-      </div>
-      <h2>add a new</h2>
-      <form onSubmit={addName}>
-        <div>
-          name: <input value={newName} onChange={handleChangeName} />
-        </div>
-        <div>
-          number: <input value={newPhone} onChange={handleChangePhone} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
-      <h2>Numbers</h2>
-      <ul>{displayNames()}</ul>
+      <h3>Add a new</h3>
+      <PersonForm />
+      <h3>Numbers</h3>
+      <Persons persons={persons} search={search} />
     </div>
   );
 };
