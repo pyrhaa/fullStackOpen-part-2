@@ -1,43 +1,6 @@
 import React, { useState } from 'react';
 import Persons from './components/Persons';
-
-// const PersonForm = ({ persons, newName, newPhone }) => {
-//   const addName = (e) => {
-//     e.preventDefault();
-//     const lastId = persons[persons.length - 1].id;
-//     const nameObject = { name: newName, number: newPhone, id: lastId + 1 };
-//     const findName = persons.find(
-//       (el) => el.name.toLowerCase() === newName.toLowerCase()
-//     );
-
-//     if (findName) {
-//       window.alert(`${newName} is already added to phonebook`);
-//     } else if (
-//       nameObject === false ||
-//       nameObject.name === '' ||
-//       nameObject.number === ''
-//     ) {
-//       window.alert("You don't write a name and the phone number to submit");
-//     } else {
-//       setPersons(persons.concat(nameObject));
-//       setNewName('');
-//       setNewPhone('');
-//     }
-//   };
-//   return (
-//     <form onSubmit={addName}>
-//       <div>
-//         name: <input value={newName} onChange={handleChangeName} />
-//       </div>
-//       <div>
-//         number: <input value={newPhone} onChange={handleChangePhone} />
-//       </div>
-//       <div>
-//         <button type="submit">add</button>
-//       </div>
-//     </form>
-//   );
-// };
+import PersonForm from './components/PersonForm';
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -52,6 +15,29 @@ const App = () => {
 
   const handleChangeSearch = (e) => {
     setSearch(e.target.value);
+  };
+
+  const addName = (e) => {
+    e.preventDefault();
+    const lastId = persons[persons.length - 1].id;
+    const nameObject = { name: newName, number: newPhone, id: lastId + 1 };
+    const findName = persons.find(
+      (el) => el.name.toLowerCase() === newName.toLowerCase()
+    );
+
+    if (findName) {
+      window.alert(`${newName} is already added to phonebook`);
+    } else if (
+      nameObject === false ||
+      nameObject.name === '' ||
+      nameObject.number === ''
+    ) {
+      window.alert("You don't write a name and the phone number to submit");
+    } else {
+      setPersons(persons.concat(nameObject));
+      setNewName('');
+      setNewPhone('');
+    }
   };
 
   return (
@@ -71,13 +57,13 @@ const App = () => {
     // </div>
     <div>
       <h3>Add a new</h3>
-      {/* <PersonForm
-        persons={persons}
+      <PersonForm
+        addName={addName}
         newName={newName}
         newPhone={newPhone}
         handleChangeName={(e) => setNewName(e.target.value)}
         handleChangePhone={(e) => setNewPhone(e.target.value)}
-      /> */}
+      />
       <h3>Numbers</h3>
       <Persons persons={persons} search={search} />
     </div>
