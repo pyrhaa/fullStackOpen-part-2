@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Persons from './components/Persons';
 import PersonForm from './components/PersonForm';
+import Filter from './components/Filter';
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -13,10 +14,7 @@ const App = () => {
   const [newPhone, setNewPhone] = useState('');
   const [search, setSearch] = useState('');
 
-  const handleChangeSearch = (e) => {
-    setSearch(e.target.value);
-  };
-
+  //function add a person from the form when you submit, message to alert if the field is not well write and reinitialize the form when submitting.
   const addName = (e) => {
     e.preventDefault();
     const lastId = persons[persons.length - 1].id;
@@ -41,21 +39,9 @@ const App = () => {
   };
 
   return (
-    // <div>
-    //   <h1>Phonebook</h1>
-    //   <div>
-    //     <label htmlFor="site-search">filter shown with</label>
-    //     <input
-    //       type="search"
-    //       id="site-search"
-    //       name="search"
-    //       aria-label="Search through site content"
-    //       onChange={handleChangeSearch}
-    //     />
-    //   </div>
-
-    // </div>
     <div>
+      <h2>Phonebook</h2>
+      <Filter handleChangeSearch={(e) => setSearch(e.target.value)} />
       <h3>Add a new</h3>
       <PersonForm
         addName={addName}
