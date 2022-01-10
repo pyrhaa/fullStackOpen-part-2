@@ -10,10 +10,12 @@ const CountryList = ({ search, country }) => {
   );
 
   return (
-    <div>
-      <h2>Azul</h2>
-      <p>hey</p>
-    </div>
+    <ul>
+      {filterCountries.map((el) => {
+        const id = el.ccn3;
+        return <li key={parseInt(id)}>{el.name.common}</li>;
+      })}
+    </ul>
   );
 };
 
