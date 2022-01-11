@@ -1,0 +1,23 @@
+import React from 'react';
+
+const CountryInfo = ({ filterCountries }) => {
+  const theCountry = filterCountries[0];
+  const countryLang = Object.values(theCountry.languages);
+  console.log(theCountry);
+  return (
+    <div>
+      <h1>{theCountry.name.common}</h1>
+      <p>capital {theCountry.capital}</p>
+      <p>population {theCountry.population}</p>
+      <h3>languages</h3>
+      <ul>
+        {countryLang.map((el) => {
+          return <li key={Math.random()}>{el}</li>;
+        })}
+      </ul>
+      <img style={{ width: '100px' }} src={theCountry.flags.png} />
+    </div>
+  );
+};
+
+export default CountryInfo;
