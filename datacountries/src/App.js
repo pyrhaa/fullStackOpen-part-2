@@ -13,7 +13,7 @@ const CountryList = ({ search, country }) => {
     return <p>Be more specific, please, too many matches.</p>;
   } else if (search.length === 0 && filterCountries.length > 10) {
     return <p>Where we going today ?</p>;
-  } else {
+  } else if (filterCountries.length === 10) {
     return (
       <ul>
         {filterCountries.map((el) => {
@@ -22,7 +22,19 @@ const CountryList = ({ search, country }) => {
         })}
       </ul>
     );
+  } else {
+    return (
+      <CountryInfo
+        search={search}
+        country={country}
+        filterCountries={filterCountries}
+      />
+    );
   }
+};
+
+const CountryInfo = ({ search, country, filterCountries }) => {
+  return <p>Azul</p>;
 };
 
 const App = () => {
