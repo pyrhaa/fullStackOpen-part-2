@@ -7,13 +7,11 @@ const CountryList = ({ search, country }) => {
     (el) => el.name.common.toLowerCase().indexOf(search.toLowerCase()) !== -1
   );
 
-  console.log(country);
-
   if (filterCountries.length > 10 && search.length > 0) {
     return <p>Be more specific, please, too many matches.</p>;
   } else if (search.length === 0 && filterCountries.length > 10) {
     return <p>Where we going today ?</p>;
-  } else if (filterCountries.length === 10) {
+  } else if (filterCountries.length === 10 || filterCountries.length !== 1) {
     return (
       <ul>
         {filterCountries.map((el) => {
@@ -22,32 +20,29 @@ const CountryList = ({ search, country }) => {
         })}
       </ul>
     );
+  } else if (filterCountries.length === 1) {
+    return <CountryInfo filterCountries={filterCountries} />;
   } else {
-    return (
-      <CountryInfo
-        search={search}
-        country={country}
-        filterCountries={filterCountries}
-      />
-    );
+    return <p>No matching</p>;
   }
 };
 
-const CountryInfo = ({ country, search, filterCountries }) => {
-  const countryLang = Object.values(filterCountries[0].languages);
-  console.log(countryLang);
+const CountryInfo = ({ filterCountries }) => {
+  const theCountry = filterCountries[0];
+  const countryLang = Object.values(theCountry.languages);
+  console.log(theCountry);
   return (
     <div>
-      {/* <h1>{pays.name.common}</h1>
-      <p>capital {pays.capital}</p>
-      <p>population {pays.population}</p> */}
+      <h1>{theCountry.name.common}</h1>
+      <p>capital {theCountry.capital}</p>
+      <p>population {theCountry.population}</p>
       <h3>languages</h3>
-      {/* <ul>
-        {paysLang.map((el, i) => {
-          return <li key={el[i]}>{el}</li>;
+      <ul>
+        {countryLang.map((el) => {
+          return <li key={Math.random()}>{el}</li>;
         })}
       </ul>
-      <img style={{ width: '100px' }} src={pays.flags.png} /> */}
+      <img style={{ width: '100px' }} src={theCountry.flags.png} />
     </div>
   );
 };
