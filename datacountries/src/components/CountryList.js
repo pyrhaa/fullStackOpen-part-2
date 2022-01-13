@@ -6,6 +6,11 @@ const CountryList = ({ search, country }) => {
     (el) => el.name.common.toLowerCase().indexOf(search.toLowerCase()) !== -1
   );
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+  };
+
   if (filterCountries.length > 10 && search.length > 0) {
     return <p>Be more specific, please, too many matches.</p>;
   } else if (search.length === 0 && filterCountries.length > 10) {
@@ -18,7 +23,9 @@ const CountryList = ({ search, country }) => {
           return (
             <li key={parseInt(id)}>
               {el.name.common}
-              <button>show</button>
+              <button onClick={handleClick} value={el.name.common}>
+                show
+              </button>
             </li>
           );
         })}

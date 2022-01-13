@@ -3,7 +3,7 @@ import React from 'react';
 const CountryInfo = ({ filterCountries }) => {
   const theCountry = filterCountries[0];
   const countryLang = Object.values(theCountry.languages);
-  console.log(theCountry);
+
   return (
     <div>
       <h1>{theCountry.name.common}</h1>
