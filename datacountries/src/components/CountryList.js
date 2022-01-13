@@ -1,15 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CountryInfo from './CountryInfo';
 
 const CountryList = ({ search, country }) => {
+  const [showCountry, setShowCountry] = useState();
   const filterCountries = country.filter(
     (el) => el.name.common.toLowerCase().indexOf(search.toLowerCase()) !== -1
   );
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    console.log(e.target.value);
-  };
 
   if (filterCountries.length > 10 && search.length > 0) {
     return <p>Be more specific, please, too many matches.</p>;
@@ -23,7 +19,11 @@ const CountryList = ({ search, country }) => {
           return (
             <li key={parseInt(id)}>
               {el.name.common}
-              <button onClick={handleClick} value={el.name.common}>
+              <button
+                onClick={() => {
+                  setShowCountry(el);
+                  console.log(showCountry);
+                }}>
                 show
               </button>
             </li>
@@ -32,7 +32,7 @@ const CountryList = ({ search, country }) => {
       </ul>
     );
   } else if (filterCountries.length === 1) {
-    return <CountryInfo filterCountries={filterCountries} />;
+    return <CountryInfo showCountry={showCountry} />;
   } else {
     return <p>No matching</p>;
   }
