@@ -15,7 +15,12 @@ const CountryList = ({ search, country }) => {
       <ul>
         {filterCountries.map((el) => {
           const id = el.ccn3;
-          return <li key={parseInt(id)}>{el.name.common}</li>;
+          return (
+            <li key={parseInt(id)}>
+              {el.name.common}
+              <button>show</button>
+            </li>
+          );
         })}
       </ul>
     );
