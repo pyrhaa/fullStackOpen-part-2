@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import CountryInfo from './CountryInfo';
 
 const CountryList = ({ search, country }) => {
-  const [showCountry, setShowCountry] = useState();
   const filterCountries = country.filter(
     (el) => el.name.common.toLowerCase().indexOf(search.toLowerCase()) !== -1
   );
@@ -20,9 +19,9 @@ const CountryList = ({ search, country }) => {
             <li key={parseInt(id)}>
               {el.name.common}
               <button
-                onClick={() => {
-                  setShowCountry(el);
-                  console.log(showCountry);
+                value={[el]}
+                onClick={(e) => {
+                  return <CountryInfo arrayObject={e.target.value} />;
                 }}>
                 show
               </button>
@@ -32,7 +31,7 @@ const CountryList = ({ search, country }) => {
       </ul>
     );
   } else if (filterCountries.length === 1) {
-    return <CountryInfo showCountry={showCountry} />;
+    return <CountryInfo arrayObject={filterCountries} />;
   } else {
     return <p>No matching</p>;
   }
