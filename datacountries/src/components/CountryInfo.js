@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const CountryInfo = ({ arrayObject }) => {
   const [weatherInfo, setWeatherInfo] = useState();
-  const weather = process.env.REACT_APP_API_KEY;
   const theCountry = arrayObject[0];
   const countryLang = Object.values(theCountry.languages);
 
-  console.log(weather);
+  useEffect(() => {
+    const weatherApi = process.env.REACT_APP_API_KEY;
+    axios
+      .get(
+        `api.openweathermap.org/data/2.5/weather?q=${theCountry.name.common}&appid=${weatherApi}`
+      )
+      .then((res) => {
+        // return setWeatherInfo(res.data);
+        console.log(res);
+      });
+  }, []);
+
+  // console.log(weatherInfo);
 
   return (
     <div>
