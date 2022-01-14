@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const CountryInfo = ({ arrayObject }) => {
+  const [weatherInfo, setWeatherInfo] = useState();
+  const weather = process.env.REACT_APP_API_KEY;
   const theCountry = arrayObject[0];
   const countryLang = Object.values(theCountry.languages);
+
+  console.log(weather);
 
   return (
     <div>
