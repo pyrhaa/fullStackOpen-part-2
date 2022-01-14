@@ -3,6 +3,7 @@ import CountryInfo from './CountryInfo';
 
 const CountryList = ({ search, country }) => {
   const [show, setShow] = useState(true);
+  const [selected, setSelected] = useState([]);
   const filterCountries = country.filter(
     (el) => el.name.common.toLowerCase().indexOf(search.toLowerCase()) !== -1
   );
@@ -23,6 +24,7 @@ const CountryList = ({ search, country }) => {
                 <button
                   onClick={() => {
                     setShow(false);
+                    setSelected([el]);
                   }}>
                   show
                 </button>
@@ -32,25 +34,8 @@ const CountryList = ({ search, country }) => {
         </ul>
       );
     } else {
-      return <h1>hey</h1>;
+      return <CountryInfo arrayObject={selected} />;
     }
-
-    // <ul>
-    //   {filterCountries.map((el) => {
-    //     const id = el.ccn3;
-    //     return (
-    //       <li key={parseInt(id)}>
-    //         {el.name.common}
-    //         <button
-    //           onClick={() => {
-    //             return <p>hey</p>;
-    //           }}>
-    //           show
-    //         </button>
-    //       </li>
-    //     );
-    //   })}
-    // </ul>
   } else if (filterCountries.length === 1) {
     return <CountryInfo arrayObject={filterCountries} />;
   } else {
