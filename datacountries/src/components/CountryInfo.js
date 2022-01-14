@@ -2,23 +2,22 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const CountryInfo = ({ arrayObject }) => {
-  const [weatherInfo, setWeatherInfo] = useState();
+  const [weatherInfo, setWeatherInfo] = useState({});
   const theCountry = arrayObject[0];
   const countryLang = Object.values(theCountry.languages);
+  const weatherApi = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
-    const weatherApi = process.env.REACT_APP_API_KEY;
     axios
       .get(
-        `api.openweathermap.org/data/2.5/weather?q=${theCountry.name.common}&appid=${weatherApi}`
+        `http://api.weatherstack.com/current?access_key=${weatherApi}&query=${theCountry.name.common}`
       )
       .then((res) => {
-        // return setWeatherInfo(res.data);
-        console.log(res);
+        return setWeatherInfo(res.data);
       });
   }, []);
 
-  // console.log(weatherInfo);
+  console.log(weatherInfo);
 
   return (
     <div>
@@ -32,6 +31,16 @@ const CountryInfo = ({ arrayObject }) => {
         })}
       </ul>
       <img style={{ width: '100px' }} src={theCountry.flags.png} />
+      <h3>Weather in {theCountry.name.common}</h3>
+      <p>temperature: {weatherInfo.current.temperature} Celsius</p>
+      <img
+        style={{ width: '50px' }}
+        src={weatherInfo.current.weather_icons[0]}
+      />
+      <p>
+        wind: {weatherInfo.current.wind_speed} mph direction{' '}
+        {weatherInfo.current.wind_dir}
+      </p>
     </div>
   );
 };
