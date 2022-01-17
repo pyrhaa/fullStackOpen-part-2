@@ -39,6 +39,10 @@ const App = () => {
       setNewName('');
       setNewPhone('');
     }
+
+    axios
+      .post('http://localhost:3001/persons', nameObject)
+      .then((res) => console.log(res));
   };
 
   return (
