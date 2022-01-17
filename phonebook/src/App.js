@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import personService from './services/persons';
 import Persons from './components/Persons';
 import PersonForm from './components/PersonForm';
@@ -56,7 +55,7 @@ const App = () => {
         handleChangePhone={(e) => setNewPhone(e.target.value)}
       />
       <h3>Numbers</h3>
-      <Persons persons={persons} search={search} />
+      <Persons persons={persons} search={search} setPersons={setPersons} />
     </div>
   );
 };
