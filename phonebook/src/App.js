@@ -12,9 +12,12 @@ const App = () => {
 
   //fetch data from db.json that is the persons list
   useEffect(() => {
-    personService.getAll().then((res) => {
-      setPersons(res.data);
-    });
+    personService
+      .getAll()
+      .then((res) => {
+        setPersons(res.data);
+      })
+      .catch((error) => console.log('Fail to fetch data from server'));
   }, []);
 
   //function add a person from the form when you submit, message to alert if the field is not well write and reinitialize the form when submitting.
@@ -34,14 +37,17 @@ const App = () => {
         const id = findName.id;
         const changedNumber = { ...findName, number: newPhone };
 
-        personService.update(id, changedNumber).then((res) =>
-          setPersons(
-            persons
-              .filter((pers) => pers.id !== id)
-              .concat(res.data)
-              .sort((a, b) => a.id - b.id)
+        personService
+          .update(id, changedNumber)
+          .then((res) =>
+            setPersons(
+              persons
+                .filter((pers) => pers.id !== id)
+                .concat(res.data)
+                .sort((a, b) => a.id - b.id)
+            )
           )
-        );
+          .catch((error) => console.log('Fail to update'));
       }
     } else if (
       nameObject === false ||
@@ -50,11 +56,14 @@ const App = () => {
     ) {
       window.alert("You don't write a name and the phone number to submit");
     } else {
-      personService.create(nameObject).then((res) => {
-        setPersons(persons.concat(res.data));
-        setNewName('');
-        setNewPhone('');
-      });
+      personService
+        .create(nameObject)
+        .then((res) => {
+          setPersons(persons.concat(res.data));
+          setNewName('');
+          setNewPhone('');
+        })
+        .catch((error) => console.log('Fail to add'));
     }
   };
 

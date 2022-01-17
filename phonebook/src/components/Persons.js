@@ -16,7 +16,8 @@ const Persons = ({ persons, search, setPersons }) => {
           setPersons(
             persons.filter((pers) => pers.id !== Number(e.target.value))
           )
-        );
+        )
+        .catch((error) => console.log('Fail to delete'));
     }
   };
 
