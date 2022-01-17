@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import personService from './services/persons';
 import Persons from './components/Persons';
 import PersonForm from './components/PersonForm';
 import Filter from './components/Filter';
@@ -12,7 +13,7 @@ const App = () => {
 
   //fetch data from db.json that is the persons list
   useEffect(() => {
-    axios.get('http://localhost:3001/persons').then((res) => {
+    personService.getAll().then((res) => {
       setPersons(res.data);
     });
   }, []);
@@ -34,7 +35,7 @@ const App = () => {
     ) {
       window.alert("You don't write a name and the phone number to submit");
     } else {
-      axios.post('http://localhost:3001/persons', nameObject).then((res) => {
+      personService.create(nameObject).then((res) => {
         setPersons(persons.concat(res.data));
         setNewName('');
         setNewPhone('');
