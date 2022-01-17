@@ -20,8 +20,7 @@ const App = () => {
   //function add a person from the form when you submit, message to alert if the field is not well write and reinitialize the form when submitting.
   const addName = (e) => {
     e.preventDefault();
-    const lastId = persons[persons.length - 1].id;
-    const nameObject = { name: newName, number: newPhone, id: lastId + 1 };
+    const nameObject = { name: newName, number: newPhone };
     const findName = persons.find(
       (el) => el.name.toLowerCase() === newName.toLowerCase()
     );
@@ -35,14 +34,12 @@ const App = () => {
     ) {
       window.alert("You don't write a name and the phone number to submit");
     } else {
-      setPersons(persons.concat(nameObject));
-      setNewName('');
-      setNewPhone('');
+      axios.post('http://localhost:3001/persons', nameObject).then((res) => {
+        setPersons(persons.concat(res.data));
+        setNewName('');
+        setNewPhone('');
+      });
     }
-
-    axios
-      .post('http://localhost:3001/persons', nameObject)
-      .then((res) => console.log(res));
   };
 
   return (
