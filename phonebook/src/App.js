@@ -26,7 +26,23 @@ const App = () => {
     );
 
     if (findName) {
-      window.alert(`${newName} is already added to phonebook`);
+      if (
+        window.confirm(
+          `${newName} is already added to phonebook, replace the old number with this one ?`
+        )
+      ) {
+        const id = findName.id;
+        const changedNumber = { ...findName, number: newPhone };
+
+        personService.update(id, changedNumber).then((res) =>
+          setPersons(
+            persons
+              .filter((pers) => pers.id !== id)
+              .concat(res.data)
+              .sort((a, b) => a.id - b.id)
+          )
+        );
+      }
     } else if (
       nameObject === false ||
       nameObject.name === '' ||
