@@ -3,12 +3,14 @@ import personService from './services/persons';
 import Persons from './components/Persons';
 import PersonForm from './components/PersonForm';
 import Filter from './components/Filter';
+import Notification from './components/Notification';
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState('');
   const [newPhone, setNewPhone] = useState('');
   const [search, setSearch] = useState('');
+  const [notif, setNotif] = useState(null);
 
   //fetch data from db.json that is the persons list
   useEffect(() => {
@@ -48,6 +50,12 @@ const App = () => {
             )
           )
           .catch((error) => console.log('Fail to update'));
+        setNotif(
+          `${changedNumber.name} changed his number for ${changedNumber.number}`
+        );
+        setTimeout(() => {
+          setNotif(null);
+        }, 5000);
       }
     } else if (
       nameObject === false ||
@@ -64,12 +72,17 @@ const App = () => {
           setNewPhone('');
         })
         .catch((error) => console.log('Fail to add'));
+      setNotif(`Added ${nameObject.name}`);
+      setTimeout(() => {
+        setNotif(null);
+      }, 5000);
     }
   };
 
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification notif={notif} />
       <Filter handleChangeSearch={(e) => setSearch(e.target.value.trim())} />
       <h3>Add a new</h3>
       <PersonForm
