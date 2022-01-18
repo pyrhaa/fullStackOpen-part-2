@@ -11,6 +11,7 @@ const App = () => {
   const [newPhone, setNewPhone] = useState('');
   const [search, setSearch] = useState('');
   const [notif, setNotif] = useState(null);
+  const [error, setError] = useState(false);
 
   //fetch data from db.json that is the persons list
   useEffect(() => {
@@ -82,7 +83,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification notif={notif} />
+      <Notification notif={notif} error={error} />
       <Filter handleChangeSearch={(e) => setSearch(e.target.value.trim())} />
       <h3>Add a new</h3>
       <PersonForm
@@ -93,7 +94,13 @@ const App = () => {
         handleChangePhone={(e) => setNewPhone(e.target.value)}
       />
       <h3>Numbers</h3>
-      <Persons persons={persons} search={search} setPersons={setPersons} />
+      <Persons
+        persons={persons}
+        search={search}
+        setPersons={setPersons}
+        setError={setError}
+        setNotif={setNotif}
+      />
     </div>
   );
 };

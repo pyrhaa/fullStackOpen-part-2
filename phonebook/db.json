@@ -11,24 +11,9 @@
       "id": 2
     },
     {
-      "name": "Dan Abramov",
-      "number": "45678",
-      "id": 3
-    },
-    {
-      "name": "Mary Poppendieck",
-      "number": "39-23-6423122",
-      "id": 4
-    },
-    {
       "name": "Dihya Tamazgha",
       "number": "230-0437",
       "id": 5
-    },
-    {
-      "name": "Pepe Guio",
-      "number": "747493",
-      "id": 6
     }
   ]
 }

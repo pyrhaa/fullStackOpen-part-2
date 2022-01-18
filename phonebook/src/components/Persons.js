@@ -2,7 +2,7 @@ import React from 'react';
 import personService from '../services/persons';
 
 // filter array content based on search criteria case sensitive and indexof return the first index at which a given element can be found in the array, or -1 if it is not present.
-const Persons = ({ persons, search, setPersons }) => {
+const Persons = ({ persons, search, setPersons, setError, setNotif }) => {
   const filterNames = persons.filter(
     (el) => el.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
   );
@@ -17,7 +17,21 @@ const Persons = ({ persons, search, setPersons }) => {
             persons.filter((pers) => pers.id !== Number(e.target.value))
           )
         )
-        .catch((error) => console.log('Fail to delete'));
+        .catch((error) => {
+          console.log('Fail to delete');
+          setError(true);
+          setNotif(
+            `Information of ${el.name} has already been removed from server !`
+          );
+          setTimeout(() => {
+            setError(false);
+            setNotif(null);
+          }, 5000);
+        });
+      setNotif(`${el.name} is deleted`);
+      setTimeout(() => {
+        setNotif(null);
+      }, 5000);
     }
   };
 
