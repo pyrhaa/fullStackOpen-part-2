@@ -18,9 +18,9 @@ const App = () => {
     personService
       .getAll()
       .then((res) => {
-        setPersons(res.data);
+        setPersons(res);
       })
-      .catch((error) => console.log('Fail to fetch data from server'));
+      .catch((error) => console.log('Fail to fetch data from server', error));
   }, []);
 
   //function add a person from the form when you submit, message to alert if the field is not well write and reinitialize the form when submitting.
@@ -46,11 +46,11 @@ const App = () => {
             setPersons(
               persons
                 .filter((pers) => pers.id !== id)
-                .concat(res.data)
+                .concat(res)
                 .sort((a, b) => a.id - b.id)
             )
           )
-          .catch((error) => console.log('Fail to update'));
+          .catch((error) => console.log('Fail to update', error));
         setNotif(
           `${changedNumber.name} changed his number for ${changedNumber.number}`
         );
@@ -68,11 +68,11 @@ const App = () => {
       personService
         .create(nameObject)
         .then((res) => {
-          setPersons(persons.concat(res.data));
+          setPersons(persons.concat(res));
           setNewName('');
           setNewPhone('');
         })
-        .catch((error) => console.log('Fail to add'));
+        .catch((error) => console.log('Fail to add', error));
       setNotif(`Added ${nameObject.name}`);
       setTimeout(() => {
         setNotif(null);

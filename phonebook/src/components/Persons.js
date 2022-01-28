@@ -9,26 +9,26 @@ const Persons = ({ persons, search, setPersons, setError, setNotif }) => {
 
   const deleteName = (e, el) => {
     e.preventDefault();
-    if (window.confirm(`Delete ${el.name}`)) {
+    const id = el.id;
+    const name = el.name;
+    if (window.confirm(`Delete ${name}`)) {
       personService
-        .deletePost(el.id)
-        .then(() =>
-          setPersons(
-            persons.filter((pers) => pers.id !== Number(e.target.value))
-          )
-        )
+        .deletePost(id)
+        .then((res) => {
+          setPersons(persons.filter((pers) => pers.id !== id));
+        })
         .catch((error) => {
-          console.log('Fail to delete');
+          console.log('Fail to delete', error);
           setError(true);
           setNotif(
-            `Information of ${el.name} has already been removed from server !`
+            `Information of ${name} has already been removed from server !`
           );
           setTimeout(() => {
             setError(false);
             setNotif(null);
           }, 5000);
         });
-      setNotif(`${el.name} is deleted`);
+      setNotif(`${name} is deleted`);
       setTimeout(() => {
         setNotif(null);
       }, 5000);
