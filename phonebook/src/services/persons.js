@@ -21,4 +21,5 @@ const deletePost = (id) => {
   return request.then((res) => res.data);
 };
 
-export default { getAll, create, update, deletePost };
+const module = { getAll, create, update, deletePost };
+export default module;
