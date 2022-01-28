@@ -50,7 +50,15 @@ const App = () => {
                 .sort((a, b) => a.id - b.id)
             )
           )
-          .catch((error) => console.log('Fail to update', error));
+          .catch((error) => {
+            console.log('Fail to update', error.response.data);
+            setError(true);
+            setNotif(error.response.data.error);
+            setTimeout(() => {
+              setNotif(null);
+              setError(false);
+            }, 5000);
+          });
         setNotif(
           `${changedNumber.name} changed his number for ${changedNumber.number}`
         );
@@ -72,7 +80,15 @@ const App = () => {
           setNewName('');
           setNewPhone('');
         })
-        .catch((error) => console.log('Fail to add', error));
+        .catch((error) => {
+          console.log('Fail to add', error.response.data);
+          setError(true);
+          setNotif(error.response.data.error);
+          setTimeout(() => {
+            setNotif(null);
+            setError(false);
+          }, 5000);
+        });
       setNotif(`Added ${nameObject.name}`);
       setTimeout(() => {
         setNotif(null);
